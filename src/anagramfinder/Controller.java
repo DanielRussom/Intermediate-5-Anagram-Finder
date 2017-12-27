@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -14,8 +13,8 @@ import java.util.List;
 public class Controller {
 
 	public static void main(String[] args) throws IOException {
-		String[] unsearchedWordList = readLines("bin/Words2.txt");
-		String[] wordList = unsearchedWordList.clone();
+		String[] fullWordList = readLines("bin/Words2.txt");
+		String[] wordList = fullWordList.clone();
 		int matches = 0;
 		for (int i = 0; i < wordList.length - 1; i++) {
 			if (wordList[i].equals("")) {
@@ -23,6 +22,9 @@ public class Controller {
 			}
 			for (int j = i + 1; j < wordList.length; j++) {
 				if (wordList[j].equals("")) {
+					continue;
+				}
+				if(wordList[i].length() != wordList[j].length()){
 					continue;
 				}
 				if (compareWords(wordList[i], wordList[j])) {
@@ -33,7 +35,7 @@ public class Controller {
 			}
 
 		}
-		System.out.println("There were " + matches);
+		System.out.println("There were " + matches + " matches.");
 	}
 
 	// Handles reading lines from a file

@@ -2,3 +2,6 @@ listen
 silent
 test
 sett
+pines
+snipe
+spine
